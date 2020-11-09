@@ -8,7 +8,7 @@ import 'package:blueconnectapp/locator.dart';
 
 import 'base_model.dart';
 
-class ChatViewModel extends BaseModel{
+class NotificationViewModel extends BaseModel{
   NavigationService _navigationService = locator<NavigationService>();
   ChatService _chatService = locator<ChatService>();
   AuthenticationService _authenticationService = locator<AuthenticationService>();

@@ -1,13 +1,10 @@
-import 'package:blueconnectapp/core/enum/chat_type.dart';
 import 'package:blueconnectapp/core/enum/view_state.dart';
 import 'package:blueconnectapp/core/veiwModels/homeview_model.dart';
 import 'package:blueconnectapp/ui/shared/colors.dart';
 import 'package:blueconnectapp/ui/views/channel_list.dart';
 import 'package:blueconnectapp/ui/views/groups_list.dart';
-
 import 'base_view.dart';
 import 'package:flutter/material.dart';
-
 import 'chat_list.dart';
 import 'feeds_screen.dart';
 
@@ -86,73 +83,10 @@ class _HomeScreenState extends State<HomeScreen>
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: PopupMenuButton(
-                child: Icon(
-                  Icons.more_vert,
-                  color: KPrimaryWhite,
-                ),
-                itemBuilder: (context) => [
-                  PopupMenuItem(
-                      child: GestureDetector(
-                    onTap: () {
-                      model.navigateToProfile();
-                    },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.account_circle,
-                          color: KSecondaryColorDarkGrey,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text("Profile")
-                      ],
-                    ),
-                  )),
-                  PopupMenuItem(
-                      child: GestureDetector(
-                    onTap: () {
-                      model.navigateToSettings();
-                    },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.settings,
-                          color: KSecondaryColorDarkGrey,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text("Setting")
-                      ],
-                    ),
-                  )),
-                  PopupMenuItem(
-                      child: GestureDetector(
-                    onTap: () async {
-                      await model.signOut();
-                    },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.exit_to_app,
-                          color: KSecondaryColorDarkGrey,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text("Sign Out")
-                      ],
-                    ),
-                  ))
-                ],
+              child: IconButton(
+                icon: Icon(Icons.menu),
+                color: KPrimaryWhite,
+                onPressed: () => model.navigateToProfile(),
               ),
             ),
           ],
@@ -168,38 +102,11 @@ class _HomeScreenState extends State<HomeScreen>
                           Icons.public,
                           color: KPrimaryWhite,
                         ),
-                        child: Text(
-                          "Feeds",
-                          style: TextStyle(
-                              color: KPrimaryWhite,
-                              fontFamily: 'PoppinsRegular',
-                              fontSize: 13),
-                        ),
-                      ),
-                      Tab(
-                        icon: Icon(
-                          Icons.chat,
-                          color: KPrimaryWhite,
-                        ),
-                        child: Text(
-                          "Chat",
-                          style: TextStyle(
-                              color: KPrimaryWhite,
-                              fontFamily: 'PoppinsRegular',
-                              fontSize: 13),
-                        ),
                       ),
                       Tab(
                         icon: Icon(
                           Icons.people,
                           color: KPrimaryWhite,
-                        ),
-                        child: Text(
-                          "Group",
-                          style: TextStyle(
-                              color: KPrimaryWhite,
-                              fontFamily: 'PoppinsRegular',
-                              fontSize: 13),
                         ),
                       ),
                       Tab(
@@ -207,14 +114,13 @@ class _HomeScreenState extends State<HomeScreen>
                           Icons.live_tv_rounded,
                           color: KPrimaryWhite,
                         ),
-                        child: Text(
-                          "Channel",
-                          style: TextStyle(
-                              color: KPrimaryWhite,
-                              fontFamily: 'PoppinsRegular',
-                              fontSize: 13),
+                      ),
+                      Tab(
+                        icon: Icon(
+                          Icons.notifications,
+                          color: KPrimaryWhite,
                         ),
-                      )
+                      ),
                     ])
               : null,
         ),
@@ -227,9 +133,9 @@ class _HomeScreenState extends State<HomeScreen>
                   controller: _tabController,
                   children: [
                     FeedsList(),
-                    ChatList(),
                     GroupList(),
                     ChannelList(),
+                    NotificationList(),
                   ],
                 )
               : model.state == ViewState.Busy
@@ -265,7 +171,10 @@ class _HomeScreenState extends State<HomeScreen>
                           ),
                           onPressed: () {
                             // open the personal chat screen
-                            model.navigateToChatScreen(username: model.users[index].fullName, imageSrc: '', userId: model.users[index].id);
+                            model.navigateToChatScreen(
+                                username: model.users[index].fullName,
+                                imageSrc: '',
+                                userId: model.users[index].id);
                           },
                         ),
                         subtitle: Text(

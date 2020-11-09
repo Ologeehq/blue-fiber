@@ -12,7 +12,7 @@ import 'package:blueconnectapp/core/veiwModels/addview_model.dart';
 import 'package:blueconnectapp/core/veiwModels/channelchatview_model.dart';
 import 'package:blueconnectapp/core/veiwModels/channelview_model.dart';
 import 'package:blueconnectapp/core/veiwModels/chatscreenview_model.dart';
-import 'package:blueconnectapp/core/veiwModels/chatview_model.dart';
+import 'package:blueconnectapp/core/veiwModels/notificationview_model.dart';
 import 'package:blueconnectapp/core/veiwModels/conversationview_model.dart';
 import 'package:blueconnectapp/core/veiwModels/createview_model.dart';
 import 'package:blueconnectapp/core/veiwModels/feedsview_model.dart';
@@ -43,7 +43,7 @@ void setUpLocator(){
   locator.registerLazySingleton(() => VerificationViewModel());
   locator.registerLazySingleton(() => HomeViewModel());
   locator.registerLazySingleton(() => FeedsViewModel());
-  locator.registerLazySingleton(() => ChatViewModel());
+  locator.registerLazySingleton(() => NotificationViewModel());
   locator.registerLazySingleton(() => AddViewModel());
   locator.registerLazySingleton(() => ForgotPasswordViewModel());
   locator.registerLazySingleton(() => CreateViewModel());
