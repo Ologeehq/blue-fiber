@@ -1,15 +1,14 @@
-import 'package:blueconnectapp/core/enum/chat_type.dart';
-import 'package:blueconnectapp/core/veiwModels/chatview_model.dart';
+import 'package:blueconnectapp/core/veiwModels/notificationview_model.dart';
 import 'package:blueconnectapp/ui/shared/colors.dart';
 
 import 'base_view.dart';
 import 'package:flutter/material.dart';
 
-class ChatList extends StatelessWidget {
+class NotificationList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<ChatViewModel>(
+    return BaseView<NotificationViewModel>(
       onModelReady: (model) {
         model.pullChats();
       },
