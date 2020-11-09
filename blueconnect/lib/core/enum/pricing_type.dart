@@ -1,0 +1,1 @@
+enum Pricing { Free, Premium }

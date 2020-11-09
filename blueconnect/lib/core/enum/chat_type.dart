@@ -1,0 +1,1 @@
+enum ChatType { Private, Group, Community, Channel }
